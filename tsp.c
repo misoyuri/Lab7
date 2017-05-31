@@ -128,6 +128,6 @@ int main() {
 	signal(SIGINT, handler) ;
 	i = 0;
 	while ((waitpid(pid[i++], &status, 0)) > 0);
-	//handler(SIGINT);
+	handler(SIGINT);
 	
 }
