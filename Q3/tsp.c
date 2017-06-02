@@ -67,7 +67,7 @@ void _travel(int idx) {
 	if (idx == 17) {
 		if (min == -1 || min > length) {
 			pid = getpid();	
-			sprintf(filename , "%d",pid);
+			sprintf(filename , "%d.sol",pid);
 			wp = fopen(filename,"w");
 			min = length ;
 			fprintf(wp,"%d (", length) ;
@@ -116,14 +116,14 @@ int main() {
 	for (i = 0  ; i < 17 ; i++){
 		
 		if( (pid[i] = fork()) == 0) {
-			sprintf(filename[i],"%d",pid[i]);
+			sprintf(filename[i],"%d.sol",pid[i]);
 			wp = fopen(filename[i] , "w");
 			travel(i) ;
 			exit(0);
 		}
 	}
 	for(i = 0 ; i<17 ; i++)
-		sprintf(filename[i],"%d",pid[i]);
+		sprintf(filename[i],"%d.sol",pid[i]);
 
 	signal(SIGINT, handler) ;
 	i = 0;
