@@ -8,13 +8,20 @@
 int main(int argc , char* argv[]){
 
 	pid_t pid[N] = {0,};
-	int i , status;
-
-	for(i= 1 ; i<argc ; i++){
-		//printf("CHILD %d : %s unzip! \n",i-1 , argv[i]);
+	int i = 0 , status;
+	int size;
+	char files[N][N];
+	for(i= 0 ; fgets(files[i],100,stdin) ; i++);
+	size = i;
+	for(i = 0 ; i<size ; i++){
+		files[i][strlen(files[i])-1] = '\0';
+	}
+	for(i= 0 ; i<size ; i++){
+		
 		if((pid[i] = fork()) == 0){
-			printf("CHILD %d : %s unzip! \n",i-1 , argv[i]);
-			execl("/bin/gzip" ,"gzip","-d" , argv[i], NULL);
+			printf("CHILD %d :%s\n",i,files[i]);
+			execl("/bin/gzip","gzip","-d",files[i],NULL);
+			exit(1);
 		}
 	}
 	i = 0;
